@@ -80,7 +80,10 @@ function EmailTab() {
   const [busy, setBusy] = useState(false);
 
   async function submit() {
-    if (!purpose.trim()) return toast.error("Describe what the email is about");
+    if (!purpose.trim()) {
+      toast.error("Describe what the email is about");
+      return;
+    }
     setBusy(true);
     try {
       const res = await run({
@@ -177,7 +180,10 @@ function MinutesTab() {
   }
 
   async function submit() {
-    if (!notes.trim()) return toast.error("Paste the meeting notes first");
+    if (!notes.trim()) {
+      toast.error("Paste the meeting notes first");
+      return;
+    }
     setBusy(true);
     try {
       const res = await run({ data: { title: title || "Meeting", attendees, notes } });
@@ -270,7 +276,10 @@ function PlannerTab() {
     .join(", ");
 
   async function submit() {
-    if (!goal.trim()) return toast.error("Describe the goal you want planned");
+    if (!goal.trim()) {
+      toast.error("Describe the goal you want planned");
+      return;
+    }
     setBusy(true);
     try {
       const res = await run({
