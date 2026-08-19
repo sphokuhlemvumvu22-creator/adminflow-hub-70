@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DocumentsRouteImport } from './routes/documents'
+import { Route as LeaveRouteImport } from './routes/leave'
 import { Route as MeetingsRouteImport } from './routes/meetings'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as VisitorsRouteImport } from './routes/visitors'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const DocumentsRoute = DocumentsRouteImport.update({
   id: '/documents',
   path: '/documents',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaveRoute = LeaveRouteImport.update({
+  id: '/leave',
+  path: '/leave',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MeetingsRoute = MeetingsRouteImport.update({
@@ -44,6 +50,7 @@ const VisitorsRoute = VisitorsRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
+  '/leave': typeof LeaveRoute
   '/meetings': typeof MeetingsRoute
   '/tasks': typeof TasksRoute
   '/visitors': typeof VisitorsRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
+  '/leave': typeof LeaveRoute
   '/meetings': typeof MeetingsRoute
   '/tasks': typeof TasksRoute
   '/visitors': typeof VisitorsRoute
@@ -59,21 +67,31 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/documents': typeof DocumentsRoute
+  '/leave': typeof LeaveRoute
   '/meetings': typeof MeetingsRoute
   '/tasks': typeof TasksRoute
   '/visitors': typeof VisitorsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/documents' | '/meetings' | '/tasks' | '/visitors'
+  fullPaths:
+    '/' | '/documents' | '/leave' | '/meetings' | '/tasks' | '/visitors'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/documents' | '/meetings' | '/tasks' | '/visitors'
-  id: '__root__' | '/' | '/documents' | '/meetings' | '/tasks' | '/visitors'
+  to: '/' | '/documents' | '/leave' | '/meetings' | '/tasks' | '/visitors'
+  id:
+    | '__root__'
+    | '/'
+    | '/documents'
+    | '/leave'
+    | '/meetings'
+    | '/tasks'
+    | '/visitors'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DocumentsRoute: typeof DocumentsRoute
+  LeaveRoute: typeof LeaveRoute
   MeetingsRoute: typeof MeetingsRoute
   TasksRoute: typeof TasksRoute
   VisitorsRoute: typeof VisitorsRoute
@@ -93,6 +111,13 @@ declare module '@tanstack/react-router' {
       path: '/documents'
       fullPath: '/documents'
       preLoaderRoute: typeof DocumentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leave': {
+      id: '/leave'
+      path: '/leave'
+      fullPath: '/leave'
+      preLoaderRoute: typeof LeaveRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/meetings': {
@@ -122,6 +147,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DocumentsRoute: DocumentsRoute,
+  LeaveRoute: LeaveRoute,
   MeetingsRoute: MeetingsRoute,
   TasksRoute: TasksRoute,
   VisitorsRoute: VisitorsRoute,
