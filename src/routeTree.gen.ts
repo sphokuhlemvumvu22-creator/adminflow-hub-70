@@ -10,15 +10,30 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnalyticsRouteImport } from './routes/analytics'
+import { Route as ContactsRouteImport } from './routes/contacts'
 import { Route as DocumentsRouteImport } from './routes/documents'
 import { Route as LeaveRouteImport } from './routes/leave'
 import { Route as MeetingsRouteImport } from './routes/meetings'
+import { Route as MoreRouteImport } from './routes/more'
+import { Route as ReportsRouteImport } from './routes/reports'
+import { Route as SuppliesRouteImport } from './routes/supplies'
 import { Route as TasksRouteImport } from './routes/tasks'
 import { Route as VisitorsRouteImport } from './routes/visitors'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnalyticsRoute = AnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactsRoute = ContactsRouteImport.update({
+  id: '/contacts',
+  path: '/contacts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentsRoute = DocumentsRouteImport.update({
@@ -36,6 +51,21 @@ const MeetingsRoute = MeetingsRouteImport.update({
   path: '/meetings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoreRoute = MoreRouteImport.update({
+  id: '/more',
+  path: '/more',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportsRoute = ReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SuppliesRoute = SuppliesRouteImport.update({
+  id: '/supplies',
+  path: '/supplies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TasksRoute = TasksRouteImport.update({
   id: '/tasks',
   path: '/tasks',
@@ -49,50 +79,96 @@ const VisitorsRoute = VisitorsRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
+  '/contacts': typeof ContactsRoute
   '/documents': typeof DocumentsRoute
   '/leave': typeof LeaveRoute
   '/meetings': typeof MeetingsRoute
+  '/more': typeof MoreRoute
+  '/reports': typeof ReportsRoute
+  '/supplies': typeof SuppliesRoute
   '/tasks': typeof TasksRoute
   '/visitors': typeof VisitorsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
+  '/contacts': typeof ContactsRoute
   '/documents': typeof DocumentsRoute
   '/leave': typeof LeaveRoute
   '/meetings': typeof MeetingsRoute
+  '/more': typeof MoreRoute
+  '/reports': typeof ReportsRoute
+  '/supplies': typeof SuppliesRoute
   '/tasks': typeof TasksRoute
   '/visitors': typeof VisitorsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/analytics': typeof AnalyticsRoute
+  '/contacts': typeof ContactsRoute
   '/documents': typeof DocumentsRoute
   '/leave': typeof LeaveRoute
   '/meetings': typeof MeetingsRoute
+  '/more': typeof MoreRoute
+  '/reports': typeof ReportsRoute
+  '/supplies': typeof SuppliesRoute
   '/tasks': typeof TasksRoute
   '/visitors': typeof VisitorsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/documents' | '/leave' | '/meetings' | '/tasks' | '/visitors'
-  fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/documents' | '/leave' | '/meetings' | '/tasks' | '/visitors'
-  id:
-    | '__root__'
     | '/'
+    | '/analytics'
+    | '/contacts'
     | '/documents'
     | '/leave'
     | '/meetings'
+    | '/more'
+    | '/reports'
+    | '/supplies'
+    | '/tasks'
+    | '/visitors'
+  fileRoutesByTo: FileRoutesByTo
+  to:
+    | '/'
+    | '/analytics'
+    | '/contacts'
+    | '/documents'
+    | '/leave'
+    | '/meetings'
+    | '/more'
+    | '/reports'
+    | '/supplies'
+    | '/tasks'
+    | '/visitors'
+  id:
+    | '__root__'
+    | '/'
+    | '/analytics'
+    | '/contacts'
+    | '/documents'
+    | '/leave'
+    | '/meetings'
+    | '/more'
+    | '/reports'
+    | '/supplies'
     | '/tasks'
     | '/visitors'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnalyticsRoute: typeof AnalyticsRoute
+  ContactsRoute: typeof ContactsRoute
   DocumentsRoute: typeof DocumentsRoute
   LeaveRoute: typeof LeaveRoute
   MeetingsRoute: typeof MeetingsRoute
+  MoreRoute: typeof MoreRoute
+  ReportsRoute: typeof ReportsRoute
+  SuppliesRoute: typeof SuppliesRoute
   TasksRoute: typeof TasksRoute
   VisitorsRoute: typeof VisitorsRoute
 }
@@ -104,6 +180,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/analytics': {
+      id: '/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AnalyticsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contacts': {
+      id: '/contacts'
+      path: '/contacts'
+      fullPath: '/contacts'
+      preLoaderRoute: typeof ContactsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documents': {
@@ -127,6 +217,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MeetingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/more': {
+      id: '/more'
+      path: '/more'
+      fullPath: '/more'
+      preLoaderRoute: typeof MoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reports': {
+      id: '/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof ReportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supplies': {
+      id: '/supplies'
+      path: '/supplies'
+      fullPath: '/supplies'
+      preLoaderRoute: typeof SuppliesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tasks': {
       id: '/tasks'
       path: '/tasks'
@@ -146,9 +257,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnalyticsRoute: AnalyticsRoute,
+  ContactsRoute: ContactsRoute,
   DocumentsRoute: DocumentsRoute,
   LeaveRoute: LeaveRoute,
   MeetingsRoute: MeetingsRoute,
+  MoreRoute: MoreRoute,
+  ReportsRoute: ReportsRoute,
+  SuppliesRoute: SuppliesRoute,
   TasksRoute: TasksRoute,
   VisitorsRoute: VisitorsRoute,
 }
