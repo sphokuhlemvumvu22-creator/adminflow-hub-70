@@ -15,6 +15,7 @@ import {
   Package,
   Search,
   Shield,
+  Sparkles,
   UserRound,
   Users,
 } from "lucide-react";
@@ -51,6 +52,7 @@ const NAV = [
   { to: "/contacts", label: "Directory", icon: Contact2 },
   { to: "/reports", label: "Reports", icon: FileText },
   { to: "/analytics", label: "Analytics", icon: BarChart3 },
+  { to: "/assistant", label: "AI assistant", icon: Sparkles },
   { to: "/more", label: "Settings & audit", icon: Shield },
 ] as const;
 
