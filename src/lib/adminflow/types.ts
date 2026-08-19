@@ -12,7 +12,7 @@ export interface Task {
   dueDate: string; // ISO yyyy-mm-dd
   priority: TaskPriority;
   status: TaskStatus;
-  attachment?: string;
+  attachment?: string | undefined;
 }
 
 export interface ActionItem {
@@ -34,7 +34,7 @@ export interface Meeting {
   notes: string;
   minutes: string;
   actionItems: ActionItem[];
-  followUp?: string;
+  followUp?: string | undefined;
 }
 
 export type DocCategory =
@@ -57,7 +57,7 @@ export interface DocRecord {
   expiry: string;
   status: "Active" | "Under review" | "Archived";
   notes: string;
-  file?: string;
+  file?: string | undefined;
 }
 
 export interface Visitor {
@@ -68,7 +68,7 @@ export interface Visitor {
   host: string;
   purpose: string;
   arrival: string; // ISO datetime
-  departure?: string;
+  departure?: string | undefined;
   status: "Expected" | "On site" | "Checked out";
 }
 
@@ -87,9 +87,9 @@ export interface LeaveRequest {
   start: string;
   end: string;
   reason: string;
-  document?: string;
+  document?: string | undefined;
   status: "Pending" | "Approved" | "Rejected" | "Info requested";
-  note?: string;
+  note?: string | undefined;
 }
 
 export interface Supply {
@@ -111,7 +111,7 @@ export interface Contact {
   position: string;
   email: string;
   phone: string;
-  extension?: string;
+  extension?: string | undefined;
   location: string;
 }
 
