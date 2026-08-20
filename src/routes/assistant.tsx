@@ -373,6 +373,22 @@ function PlannerTab() {
   );
 }
 
+function AiDisclaimer() {
+  return (
+    <div className="mt-6 flex items-start gap-3 rounded-xl border bg-muted/40 p-4 text-sm text-muted-foreground">
+      <Info className="mt-0.5 size-4 shrink-0 text-primary" />
+      <div>
+        <p className="font-medium text-foreground">Responsible AI use</p>
+        <p className="mt-1">
+          AdminFlow AI generates suggestions based on the information you provide. Always review
+          outputs for accuracy, fairness and confidentiality before sharing them. Do not enter
+          sensitive personal, financial or proprietary information unless you are authorised to do so.
+        </p>
+      </div>
+    </div>
+  );
+}
+
 function AssistantPage() {
   return (
     <>
@@ -391,6 +407,7 @@ function AssistantPage() {
         <TabsContent value="minutes"><MinutesTab /></TabsContent>
         <TabsContent value="planner"><PlannerTab /></TabsContent>
       </Tabs>
+      <AiDisclaimer />
     </>
   );
 }
